@@ -7,5 +7,9 @@
     "start": "node index.js"
   },
   "author": "anastasiia",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "currency-converter-lt": "^2.0.1"
+  },
+  "type":"module"
 }
