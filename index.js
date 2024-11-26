@@ -1,7 +1,11 @@
 import fs from 'fs';
 
-fs.readFile('test.txt', 'utf-8', (err, data) => {
-  fs.writeFile('test.txt', data + 'hello', (err, data) => {
-    console.log('it works');
-  });
+// fs.mkdir('text-files', () => {
+//   fs.writeFile('./text-files/some.txt', 'some text', (err, data) => {
+//     console.log('it works', data);
+//   });
+// });
+
+fs.unlink('./text-files/some.txt', () => {
+  fs.rmdir('./text-files', () => {});
 });
