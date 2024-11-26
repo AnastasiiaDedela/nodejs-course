@@ -1,11 +1,13 @@
-import fs from 'fs';
+import http from 'http';
 
-// fs.mkdir('text-files', () => {
-//   fs.writeFile('./text-files/some.txt', 'some text', (err, data) => {
-//     console.log('it works', data);
-//   });
-// });
+let server = http.createServer((request, response) => {
+  response.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+  response.end('<h1>hello node js</h1>');
+});
 
-fs.unlink('./text-files/some.txt', () => {
-  fs.rmdir('./text-files', () => {});
+const PORT = 4598;
+const HOST = 'localhost';
+
+server.listen(PORT, HOST, () => {
+  console.log(`SEVRER RUNS: http://${HOST}:${PORT}`);
 });
