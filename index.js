@@ -1,8 +1,10 @@
 import http from 'http';
+import fs from 'fs';
 
 let server = http.createServer((request, response) => {
   response.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-  response.end('<h1>hello node js</h1>');
+  const stream = fs.createReadStream('./templates/index.html');
+  stream.pipe(response);
 });
 
 const PORT = 4598;
