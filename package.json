@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "anastasiia",
   "license": "ISC",
   "dependencies": {
-    "currency-converter-lt": "^2.0.1",
     "express": "^4.21.1"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
