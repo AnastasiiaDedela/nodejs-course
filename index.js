@@ -1,15 +1,48 @@
 import express from 'express'
-import { twitRouter } from './src/twit/twit.controller.js'
 const app = express()
-async function main(params) {
-    app.use(express.json())
-    app.use('/api/twits',twitRouter)
-    app.all('*', (req, res)=>{
-        res.status(404).json({message: 'not found'})
-    })
-    app.listen(4200, ()=>{
-        console.log('server runs 4200')
-    })
-}
+app.use(express.json());
 
-main()
+let posts = [{
+    id: 1,
+    title: "one",
+    text: "nnkrjnd"
+},
+{
+    id: 2,
+    title: "two",
+    text: "nnkrjnd"
+},
+{
+    id: 3,
+    title: "three",
+    text: "nnkrjnd"
+},
+]
+
+app.get('/posts', (req, res) => {
+  res.json({posts})
+})
+
+
+app.get('/posts/:id', (req, res) => {
+    const id = parseInt(req.params['id'])
+    const post = posts.find(post => post.id === id)
+    res.status(200).json(post)
+})
+
+app.post('/add-post', (req, res) => {
+    const newPost = req.body
+    posts.push(newPost)
+    res.status(200).json({"post": newPost});
+})
+
+app.delete('/posts/:id', (req, res) => {
+    const id = parseInt(req.params['id'])
+    posts = posts.filter(post => post.id !== id)
+    res.json({ posts });
+})
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
