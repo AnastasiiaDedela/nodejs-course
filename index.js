@@ -42,7 +42,7 @@ app.delete('/posts/:id', (req, res) => {
     res.json({ posts });
 })
 
-const PORT = 3000;
+const PORT = 4200;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
