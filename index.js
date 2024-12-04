@@ -30,7 +30,7 @@ app.get('/posts/:id', (req, res) => {
     res.status(200).json(post)
 })
 
-app.post('/add-post', (req, res) => {
+app.post('/posts/add-post', (req, res) => {
     const newPost = req.body
     posts.push(newPost)
     res.status(200).json({"post": newPost});
