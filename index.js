@@ -1,48 +1,13 @@
-import express from 'express'
-const app = express()
-app.use(express.json());
+import express from 'express';
+const app = express();
 
-let posts = [{
-    id: 1,
-    title: "one",
-    text: "nnkrjnd"
-},
-{
-    id: 2,
-    title: "two",
-    text: "nnkrjnd"
-},
-{
-    id: 3,
-    title: "three",
-    text: "nnkrjnd"
-},
-]
+async function main() {
+  app.use(express.json());
+  app.use('/api/twits', twitRouter); 
 
-app.get('/posts', (req, res) => {
-  res.json({posts})
-})
+  app.listen(4200, () => {
+    console.log('Server is running on port 4200');
+  });
+}
 
-
-app.get('/posts/:id', (req, res) => {
-    const id = parseInt(req.params['id'])
-    const post = posts.find(post => post.id === id)
-    res.status(200).json(post)
-})
-
-app.post('/posts/add-post', (req, res) => {
-    const newPost = req.body
-    posts.push(newPost)
-    res.status(200).json({"post": newPost});
-})
-
-app.delete('/posts/:id', (req, res) => {
-    const id = parseInt(req.params['id'])
-    posts = posts.filter(post => post.id !== id)
-    res.json({ posts });
-})
-
-const PORT = 4200;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+main();
